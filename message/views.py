@@ -42,7 +42,7 @@ def login(req):
         getAcToken = authorized.getAcToken(code)
         return HttpResponse(getAcToken)
     else:
-        page = authorized.getCode("/login")
+        page = authorized.getCode("http://wangzhiwen.top/login/?")
         return HttpResponse(page)
 
 

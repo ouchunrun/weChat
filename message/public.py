@@ -70,7 +70,9 @@ class Authorized(object):
                       "&redirect_uri=" + redirect_url + \
                       "&response_type=code&state=hello#wechat_redirect"
         req = urllib2.Request(request_url)
-        urllib2.urlopen(req)
+        response = urllib2.urlopen(req)
+        page = response.read()
+        return page
 
     def getAcToken(self, code):
         """

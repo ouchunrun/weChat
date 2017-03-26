@@ -42,8 +42,8 @@ def login(req):
         getAcToken = authorized.getAcToken(code)
         return HttpResponse(getAcToken)
     else:
-        authorized.getCode("/login")
-        return HttpResponse(1)
+        page = authorized.getCode("/login")
+        return HttpResponse(page)
 
 
 def make_menu(req):

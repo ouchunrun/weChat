@@ -7,6 +7,7 @@ import json
 import os
 import urllib2
 import xml.etree.cElementTree as ET
+from urllib import urlencode
 
 from weChat.settings import BASE_DIR
 import sys
@@ -66,9 +67,8 @@ class Authorized(object):
         获取code, 并跳转到指定界面
         :return: 
         """
-        request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + self.appID + \
-                      "&redirect_uri=" + redirect_url + \
-                      "&response_type=code&scope=snsapi_userinfo&state=hello#wechat_redirect"
+        params = urlencode({"redirect_uri": redirect_url, "response_type": "code", "scope": "snsapi_userinfo", "state": "hello"})
+        request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={}&{}#wechat_redirect".format(self.appID, params)
         return request_url
         # req = urllib2.Request(request_url)
         # response = urllib2.urlopen(req)

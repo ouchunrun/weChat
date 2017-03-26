@@ -67,7 +67,7 @@ class Authorized(object):
         :return: 
         """
         request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + self.appID + \
-                      "&redirect_url=" + redirect_url + \
+                      "&redirect_uri=" + redirect_url + \
                       "&response_type=code&scope=snsapi_userinfo&state=hello#wechat_redirect"
         return request_url
         # req = urllib2.Request(request_url)

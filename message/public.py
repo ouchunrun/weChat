@@ -71,6 +71,7 @@ class Authorized(object):
         request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + self.appID + \
                       "&{}".format(params) + \
                       "&response_type=code&scope=snsapi_userinfo&state=hello#wechat_redirect"
+        print request_url
         return request_url
         # req = urllib2.Request(request_url)
         # response = urllib2.urlopen(req)

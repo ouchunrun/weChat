@@ -20,4 +20,5 @@ from message import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^validation$', views.validation),
+    url(r'^login$', views.login),
 ]

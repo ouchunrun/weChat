@@ -6,7 +6,9 @@ import hashlib
 
 from django.http import HttpResponse
 from django.shortcuts import render
+from message.public import Authorized, Menu, AccessToken
 
+access_token = AccessToken().get_access_token()
 
 def validation(req):
     """
@@ -31,3 +33,73 @@ def validation(req):
         return HttpResponse(echostr)
     else:
         return HttpResponse("")
+
+
+def login(req):
+    authorized = Authorized()
+    if "code" in req.GET:
+        code = req.GET["code"]
+        getAcToken = authorized.getAcToken(code)
+        return HttpResponse(getAcToken)
+    else:
+        authorized.getCode("/login")
+        return HttpResponse(1)
+
+
+def make_menu(req):
+    """ 自定义菜单创建 """
+
+    myMenu = Menu()
+    postJson = """
+    {
+        "button":
+        [
+            {
+                "type": "view",
+                "name": "个人博客",
+                "url": "http://wangzhiwen.top/login"
+            },
+            {
+                "name": "快捷服务",
+                "sub_button":
+                [
+                    {
+                        "type": "view",
+                        "name": "成绩查询",
+                        "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1418702138&token=&lang=zh_CN"
+                    },
+                    {
+                        "type": "view",
+                        "name": "天气查询",
+                        "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1418702138&token=&lang=zh_CN"
+                    },
+                    {
+                        "type": "view",
+                        "name": "我的京东",
+                        "url": "http://re.jd.com/"
+                    }
+                ]
+            },
+            {
+                "name": "娱乐一下",
+                "sub_button":  
+                [
+                    {
+                        "type": "view",
+                        "name": "这里有笑话呢",
+                        "url": "http://wangzhiwen.top/getJoke"
+                    },
+                    {
+                        "type": "view",
+                        "name": "你给我留言",
+                        "url": "http://wangzhiwen.top/message"
+                    }
+                ]
+            }  
+        ]
+    }
+    """
+    myMenu.create(postJson, access_token)
+    myMenu.query(access_token)
+    return HttpResponse(11)
+

@@ -21,7 +21,7 @@ class OpenConfig(object):
     配置文件
     """
     def __init__(self):
-        self.path = os.path.join(BASE_DIR, "message/tempates/config.xml")
+        self.path = os.path.join(BASE_DIR, "message/templates/config.xml")
         self.xml_tree = ET.ElementTree(file=self.path)
 
     def getAppId(self):

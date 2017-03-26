@@ -67,8 +67,10 @@ class Authorized(object):
         获取code, 并跳转到指定界面
         :return: 
         """
-        params = urlencode({"redirect_uri": redirect_url, "response_type": "code", "scope": "snsapi_userinfo", "state": "hello"})
-        request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={}&{}#wechat_redirect".format(self.appID, params)
+        params = urlencode({"redirect_uri": redirect_url})
+        request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + self.appID + \
+                      "&{}".format(params) + \
+                      "&response_type=code&scope=snsapi_userinfo&state=hello#wechat_redirect"
         return request_url
         # req = urllib2.Request(request_url)
         # response = urllib2.urlopen(req)

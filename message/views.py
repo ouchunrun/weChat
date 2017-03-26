@@ -4,8 +4,8 @@
 #
 import hashlib
 
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, render_to_response
 from message.public import Authorized, Menu, AccessToken
 
 access_token = AccessToken().get_access_token()
@@ -42,8 +42,8 @@ def login(req):
         getAcToken = authorized.getAcToken(code)
         return HttpResponse(getAcToken)
     else:
-        authorized.getCode("http://wangzhiwen.top/login/?")
-        return HttpResponse(11)
+        request_url = authorized.getCode("/login")
+        return HttpResponseRedirect(request_url)
 
 
 def make_menu(req):

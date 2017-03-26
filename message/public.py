@@ -68,13 +68,13 @@ class Authorized(object):
         """
         request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + self.appID + \
                       "&redirect_url=" + redirect_url + \
-                      "&response_type=code&scope=snsapi_base&state=hello#wechat_redirect"
-        
-        req = urllib2.Request(request_url)
-        response = urllib2.urlopen(req)
-        page = response.read()
-        print page
-        return page
+                      "&response_type=code&scope=snsapi_userinfo&state=hello#wechat_redirect"
+        return request_url
+        # req = urllib2.Request(request_url)
+        # response = urllib2.urlopen(req)
+        # page = response.read()
+        # print page
+        # return page
 
     def getAcToken(self, code):
         """

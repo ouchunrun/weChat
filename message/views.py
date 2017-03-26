@@ -57,7 +57,7 @@ def make_menu(req):
             {
                 "type": "view",
                 "name": "个人博客",
-                "url": "http://wangzhiwen.top/login"
+                "url": "http://wangzhiwen.top/login/?"
             },
             {
                 "name": "快捷服务",

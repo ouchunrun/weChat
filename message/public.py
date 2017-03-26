@@ -67,17 +67,13 @@ class Authorized(object):
         获取code, 并跳转到指定界面
         :return: 
         """
+        # redirect_uri 应该和之前填写在微信测试号中的授权回调页面域名相同
         params = urlencode({"redirect_uri": redirect_url})
-        request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + self.appID + \
+        # 转换之后的url中将 :  // 等字符进行了转换
+        request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={}".format(self.appID) + \
                       "&{}".format(params) + \
                       "&response_type=code&scope=snsapi_userinfo&state=hello#wechat_redirect"
-        print request_url
         return request_url
-        # req = urllib2.Request(request_url)
-        # response = urllib2.urlopen(req)
-        # page = response.read()
-        # print page
-        # return page
 
     def getAcToken(self, code):
         """
@@ -88,13 +84,14 @@ class Authorized(object):
                       "&secret=" + self.appSecret + \
                       "&code=" + code + \
                       "&grant_type=authorization_code"
+        print request_url
         req = urllib2.Request(request_url)
         response = urllib2.urlopen(req)
         the_page = response.read()
         jsonreturn = json.loads(the_page)
         if jsonreturn.has_key('errcode'):
             return None  # 请求出现错误
-        return jsonreturn
+        return jsonreturn["access_token"]
 
 class Menu(object):
     """

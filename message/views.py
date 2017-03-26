@@ -39,6 +39,7 @@ def login(req):
     authorized = Authorized()
     if "code" in req.GET:
         code = req.GET["code"]
+        print code
         getAcToken = authorized.getAcToken(code)
         return HttpResponse(getAcToken)
     else:

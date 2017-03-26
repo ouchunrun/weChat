@@ -39,9 +39,10 @@ def login(req):
     authorized = Authorized()
     if "code" in req.GET:
         code = req.GET["code"]
-        print code
-        getAcToken = authorized.getAcToken(code)
-        return HttpResponse(getAcToken)
+        access_token, openid = authorized.getAcToken(code)
+        userInfo = authorized.getUserInfo(access_token, openid)
+        print userInfo
+        return HttpResponse(openid)
     else:
         request_url = authorized.getCode("http://www.wangzhiwen.top/login")
         return HttpResponseRedirect(request_url)

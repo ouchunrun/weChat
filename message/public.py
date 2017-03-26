@@ -91,7 +91,18 @@ class Authorized(object):
         jsonreturn = json.loads(the_page)
         if jsonreturn.has_key('errcode'):
             return None  # 请求出现错误
-        return jsonreturn["access_token"]
+        return jsonreturn["access_token"], jsonreturn["openid"]
+
+    def getUserInfo(self, access_token, openId):
+        request_url = "https://api.weixin.qq.com/sns/userinfo?access_token={}&openid={}&lang=zh_CN"\
+            .format(access_token, openId)
+        req = urllib2.Request(request_url)
+        response = urllib2.urlopen(req)
+        the_page = response.read()
+        jsonreturn = json.loads(the_page)
+        if jsonreturn.has_key("errcode"):
+            return None
+        return jsonreturn
 
 class Menu(object):
     """

@@ -81,7 +81,7 @@ def make_menu(req):
                         "type": "view",
                         "name": "我的账本",
                         "url": "http://wangzhiwen.top/accountList"
-                    }
+                    },
                     {
                         "type": "view",
                         "name": "记一笔账",

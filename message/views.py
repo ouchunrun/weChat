@@ -57,13 +57,13 @@ def login(req):
             User.objects.create(openid=openid, name=userInfo.nickname)
 
         toUserInfo = """
-                    <xml>
-                    <ToUserName><![CDATA[{0}]]></ToUserName>
-                    <FromUserName><![CDATA[{1}]]></FromUserName>
-                    <CreateTime>{2}</CreateTime>
-                    <MsgType><![CDATA[text]]></MsgType>
-                    <Content><![CDATA[{3}]]></Content>
-                    </xml>
+                     <xml>
+                     <ToUserName><![CDATA[{}]]></ToUserName>
+                     <FromUserName><![CDATA[{}]]></FromUserName>
+                     <CreateTime>{}</CreateTime>
+                     <MsgType><![CDATA[text]]></MsgType>
+                     <Content><![CDATA[{}]]></Content>
+                     </xml>
                     """
         ToUserName = openid
         config = OpenConfig()

@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from message import views
+from Account import views as a_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^validation$', views.validation),
     url(r'^login', views.login),
     url(r'^make_menu$', views.make_menu),
+    url(r'^accountSave$', a_views.accountSave),
 ]

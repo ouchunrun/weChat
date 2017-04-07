@@ -6,10 +6,13 @@ import hashlib
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
+from django.views.decorators.csrf import csrf_exempt
 from message.public import Authorized, Menu, AccessToken
 
 access_token = AccessToken().get_access_token()
 
+
+@csrf_exempt
 def validation(req):
     """
     微信验证

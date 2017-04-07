@@ -22,22 +22,51 @@ def validation(req):
     :param req: 
     :return: 
     """
-    getData = req.GET
-    signature = getData["signature"]
-    timestamp = getData["timestamp"]
-    nonce = getData["nonce"]
-    echostr = getData["echostr"]
-    token = "ZHYYRJYFGZS"  # 请按照公众平台官网\基本配置中信息填写
+    if req.method == "GET":
+        getData = req.GET
+        signature = getData["signature"]
+        timestamp = getData["timestamp"]
+        nonce = getData["nonce"]
+        echostr = getData["echostr"]
+        token = "ZHYYRJYFGZS"  # 请按照公众平台官网\基本配置中信息填写
 
-    List = [token, timestamp, nonce]
-    List.sort()
-    sha1 = hashlib.sha1()
-    map(sha1.update, List)
-    hashcode = sha1.hexdigest()
-    if hashcode == signature:
-        return HttpResponse(echostr)
-    else:
-        return HttpResponse("")
+        List = [token, timestamp, nonce]
+        List.sort()
+        sha1 = hashlib.sha1()
+        map(sha1.update, List)
+        hashcode = sha1.hexdigest()
+        if hashcode == signature:
+            return HttpResponse(echostr)
+        else:
+            return HttpResponse("")
+    elif req.method == "POST":
+        authorized = Authorized()
+        if "code" in req.GET:
+            code = req.GET["code"]
+            access_token, openid = authorized.getAcToken(code)
+            userInfo = authorized.getUserInfo(access_token, openid)
+            user = User.objects.filter(openId=openid)
+            if user.exists():
+                pass
+            else:
+                User.objects.create(openid=openid, name=userInfo.nickname)
+
+            toUserInfo = """
+                        <xml>
+                        <ToUserName><![CDATA[{0}]]></ToUserName>
+                        <FromUserName><![CDATA[{1}]]></FromUserName>
+                        <CreateTime>{2}</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[{3}]]></Content>
+                        </xml>
+                       """
+            ToUserName = openid
+            config = OpenConfig()
+            FromUserName = config.getAppId()
+            CreateTime = str(int(time.time()))
+            Content = "欢迎您的使用，请尽情的玩耍吧！！"
+            toUserInfo = toUserInfo.format(ToUserName, FromUserName, CreateTime, Content)
+            return HttpResponse(toUserInfo)
 
 
 def login(req):

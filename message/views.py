@@ -2,6 +2,7 @@
 #
 # 逻辑视图
 #
+from __future__ import print_function
 import hashlib
 
 import time
@@ -40,33 +41,7 @@ def validation(req):
         else:
             return HttpResponse("")
     elif req.method == "POST":
-        authorized = Authorized()
-        if "code" in req.GET:
-            code = req.GET["code"]
-            access_token, openid = authorized.getAcToken(code)
-            userInfo = authorized.getUserInfo(access_token, openid)
-            user = User.objects.filter(openId=openid)
-            if user.exists():
-                pass
-            else:
-                User.objects.create(openid=openid, name=userInfo.nickname)
-
-            toUserInfo = """
-                        <xml>
-                        <ToUserName><![CDATA[{0}]]></ToUserName>
-                        <FromUserName><![CDATA[{1}]]></FromUserName>
-                        <CreateTime>{2}</CreateTime>
-                        <MsgType><![CDATA[text]]></MsgType>
-                        <Content><![CDATA[{3}]]></Content>
-                        </xml>
-                       """
-            ToUserName = openid
-            config = OpenConfig()
-            FromUserName = config.getAppId()
-            CreateTime = str(int(time.time()))
-            Content = "欢迎您的使用，请尽情的玩耍吧！！"
-            toUserInfo = toUserInfo.format(ToUserName, FromUserName, CreateTime, Content)
-            return HttpResponse(toUserInfo)
+        return HttpResponseRedirect("/login")
 
 
 def login(req):
@@ -96,6 +71,7 @@ def login(req):
         CreateTime = str(int(time.time()))
         Content = "欢迎您的使用，请尽情的玩耍吧！！"
         toUserInfo = toUserInfo.format(ToUserName, FromUserName, CreateTime, Content)
+        print(toUserInfo)
         return HttpResponse(toUserInfo)
     else:
         request_url = authorized.getCode("http://www.wangzhiwen.top/login")

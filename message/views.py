@@ -4,10 +4,13 @@
 #
 import hashlib
 
+import time
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.views.decorators.csrf import csrf_exempt
 from message.public import Authorized, Menu, AccessToken
+from models import User
+from public import OpenConfig
 
 access_token = AccessToken().get_access_token()
 
@@ -31,7 +34,6 @@ def validation(req):
     sha1 = hashlib.sha1()
     map(sha1.update, List)
     hashcode = sha1.hexdigest()
-    print "handle/GET func: hashcode, signature: ", hashcode, signature
     if hashcode == signature:
         return HttpResponse(echostr)
     else:
@@ -44,7 +46,28 @@ def login(req):
         code = req.GET["code"]
         access_token, openid = authorized.getAcToken(code)
         userInfo = authorized.getUserInfo(access_token, openid)
-        return render(req, "userInfo.html", {"user": userInfo})
+        user = User.objects.filter(openId=openid)
+        if user.exists():
+            pass
+        else:
+            User.objects.create(openid=openid, name=userInfo.nickname)
+
+        toUserInfo = """
+                    <xml>
+                    <ToUserName><![CDATA[{0}]]></ToUserName>
+                    <FromUserName><![CDATA[{1}]]></FromUserName>
+                    <CreateTime>{2}</CreateTime>
+                    <MsgType><![CDATA[text]]></MsgType>
+                    <Content><![CDATA[{3}]]></Content>
+                    </xml>
+                    """
+        ToUserName = openid
+        config = OpenConfig()
+        FromUserName = config.getAppId()
+        CreateTime = str(int(time.time()))
+        Content = "欢迎您的使用，请尽情的玩耍吧！！"
+        toUserInfo = toUserInfo.format(ToUserName, FromUserName, CreateTime, Content)
+        return HttpResponse(toUserInfo)
     else:
         request_url = authorized.getCode("http://www.wangzhiwen.top/login")
         return HttpResponseRedirect(request_url)
@@ -61,7 +84,7 @@ def make_menu(req):
             {
                 "type": "view",
                 "name": "个人博客",
-                "url": "http://wangzhiwen.top/login/?"
+                "url": "http://wangzhiwen.top/blog"
             },
             {
                 "name": "快捷服务",

@@ -76,8 +76,13 @@ def make_menu(req):
                     },
                     {
                         "type": "view",
-                        "name": "我的京东",
-                        "url": "http://re.jd.com/"
+                        "name": "我的账本",
+                        "url": "/accountList"
+                    }
+                    {
+                        "type": "view",
+                        "name": "记一笔账",
+                        "url": "/accountSave"
                     }
                 ]
             },

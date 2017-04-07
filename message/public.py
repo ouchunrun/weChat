@@ -117,21 +117,17 @@ class Menu(object):
         if isinstance(postData, unicode):
             postData = postData.encode('utf-8')
         urlResp = urllib2.urlopen(url=postUrl, data=postData)
-        print urlResp.read()
 
     def query(self, accessToken):
         postUrl = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=%s" % accessToken
         urlResp = urllib2.urlopen(url=postUrl)
-        print urlResp.read()
 
     def delete(self, accessToken):
         postUrl = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s" % accessToken
         urlResp = urllib2.urlopen(url=postUrl)
-        print urlResp.read()
 
     def get_current_selfmenu_info(self, accessToken):
         postUrl = "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=%s" % accessToken
         urlResp = urllib2.urlopen(url=postUrl)
-        print urlResp.read()
 
 

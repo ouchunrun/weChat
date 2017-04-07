@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^login', views.login),
     url(r'^make_menu$', views.make_menu),
     url(r'^accountSave$', a_views.accountSave),
+    url(r'^accountList', a_views.accountList),
 ]

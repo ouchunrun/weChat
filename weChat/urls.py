@@ -19,10 +19,11 @@ from message import views
 from Account import views as a_views
 
 urlpatterns = [
-    url(r'^$', views.login),
+    url(r'^$', views.index),
     url(r'^admin/', admin.site.urls),
     url(r'^validation$', views.validation),
     url(r'^make_menu$', views.make_menu),
+    url(r'^login$', views.login),
     url(r'^accountSave$', a_views.accountSave),
     url(r'^accountList', a_views.accountList),
 ]

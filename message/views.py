@@ -41,7 +41,23 @@ def validation(req):
         else:
             return HttpResponse("")
     elif req.method == "POST":
-        return HttpResponseRedirect("/login")
+        if req.POST.has_key("openid"):
+            openid = req.POST["openid"]
+            print(openid)
+            return HttpResponse(2)
+        else:
+            print(req.POST)
+            return HttpResponse(1)
+
+
+def index(req):
+    """
+    
+    :param req: 
+    :return: 
+    """
+    return HttpResponse(121)
+
 
 
 def login(req):

@@ -2,9 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>记一笔账</title>
+    <title>我的账单</title>
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">-->
+    <!--<link rel="stylesheet" href="static/weui/dist/style/weui.css" />-->
+    <!--<link rel="stylesheet" href="/static/weui/dist/example/example.css" />-->
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.css" />
+    <style>
+        *{padding:0;margin:0;}
+        ul li{
+            float: left;
+            padding: 7px;
+            margin: 5px;
+            border-radius: 5px;
+            color: aliceblue;
+        }
+        hr{
+            height: 2px;
+            border: none;
+            border-top: 1px solid #e8e8e8;
+        }
+    </style>
 </head>
 <body>
-<div>记一笔账</div>
+<div>
+    <h1 style="text-align: center;background: #15A9E9;height: 50px;color: aliceblue;    padding-top: 13px;">今天</h1>
+    <hr>
+    <div class="page__bd">
+        <div class="weui-navbar" style="background: #fffcf5;height: 36px;">
+            <div style="float: left;width: 60px;padding: 6px 0 0 10px; height:30px;    color: #15a9e9;">
+                支出
+            </div>
+            <div style="float: left;width: 60px;padding: 6px 0 0 10px; height:30px;">
+                收入
+            </div>
+            <div style="float: left;width: 60px;padding: 6px 0 0 10px; height:30px;">
+                其他
+            </div>
+            <div>
+
+                <button style="float: right;width: 30px;height: 25px;border: none;background: aliceblue;color: cornflowerblue;font-size: 17px;margin-top: 5px;">
+                    <span class="icon-edit"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr style="clear:both">
+    <ul style="list-style-type: none;padding: 0px;margin: 0px;">
+        <li style="background: rgba(33, 150, 243, 0.44);">交通</li>
+        <li style="background:#F36891;">吃饭</li>
+        <li style="background: #966f8e;">到处旅游</li>
+        <li style="background: #9ACC9B;">逛逛街</li>
+        <li style="background: #E5D810;">随便看看</li>
+        <li style="background: #C991CA;">丁飞</li>
+        <li style="background: #de99a6;">到处旅游</li>
+        <li style="background: #AED6F0;">超市</li>
+        <li style="background: #71D1EE;">交通</li>
+        <li style="background: #987367;">用餐</li>
+        <li style="background: #d2a488;">到处旅游</li>
+        <li style="background: #EC66C1;">超市</li>
+        <li style="background: #0CC2C7;">交通</li>
+        <li style="background: #9871b3;">到处旅游</li>
+        <li style="background: #6BD57A;">用餐</li>
+        <li style="background: #5B4DA5;">超市</li>
+    </ul>
+    <hr style="clear:both;">
+    <div style="height: 40px;margin-top:15px;">
+        <span class="icon-edit" style="font-size: 20px;color: cornflowerblue;"></span>
+        <span>备注</span>
+        <span class="icon-chevron-right" style="float: right;margin-right: 7px;color: #bdbdbd;font-size: 20px;"></span>
+    </div>
+    <hr>
+    <div style="height: 40px;margin-top:15px;">
+        <span class="" style="font-size: 20px;color: cornflowerblue;">￥</span>
+        <span>支出</span>
+        <span class="icon-chevron-right" style="float: right;margin-right: 7px;color: #bdbdbd;font-size: 20px;"></span>
+    </div>
+    <div>
+        <button style="width: 100%;border: none;background: #15a9e9;height: 40px;    border-radius: 5px;">添加</button>
+    </div>
+</div>
+<a href="accountList" style="text-decoration: none;width:100%;text-align:center;    display: block;">
+    <div class="icon-eye-open" style="clear: both;text-align: center;font-size: 40px;color: #15a9e9;"></div>
+</a>
 </body>
+
+
+<!--<script src="/static/weui/dist/example/zepto.min.js"></script>-->
+<!--<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+<!--<script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>-->
+<!--<script src="/static/weui/dist/example/example.js"></script>-->
 </html>

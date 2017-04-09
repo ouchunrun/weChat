@@ -3,8 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>我的账单</title>
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">-->
+    <!--<link rel="stylesheet" href="static/weui/dist/style/weui.css" />-->
+    <!--<link rel="stylesheet" href="/static/weui/dist/example/example.css" />-->
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.css" />
+    <style>
+        *{padding:0;margin:0;}
+        hr{
+            clear:both;
+            height: 2px;
+            border: none;
+            border-top: 1px solid #e8e8e8;
+        }
+        .nav{
+            float: left;
+            height: 35px;
+            margin: 5px;
+            width:30%;
+        text-align: center;
+        }
+    </style>
 </head>
 <body>
-<div>我的账单</div>
+<div>
+    <h1 style="text-align: center;background: #15A9E9;height: 50px;color: aliceblue;padding-top: 13px;">我的消费账单</h1>
+    <hr>
+    <div>
+        <div class="nav">
+            <span>2017年</span><br>
+            <select name="" id="">
+                <option value="">04月</option>
+            </select>
+        </div>
+        <div class="nav">
+            <span>支出(元)</span><br>
+            <span>88.00</span>
+        </div>
+        <div class="nav">
+            <span>收入(元)</span><br>
+            <span>400.00</span>
+        </div>
+        <hr>
+        <div style="margin: 0 5%;height: 40px;padding-top: 15px;background: #f5f4f4;">
+            <div style="float:left;text-align: center;">
+                <span>04月08日</span>
+                <span>星期六</span>
+            </div>
+            <div style="float: right;">
+                <span>支出：37</span>
+                <span>收入：0</span>
+            </div>
+        </div>
+        <div style="float:left;width:90%;margin-left: 5%;height: 60px;">
+            <span class="icon-heart" style="font-size: 30px;float:left;color: #15a9e9;    width: 50px;"></span>
+            <span style="display: block;margin-top: 10px;float: left;">早餐</span>
+            <span style="display: block;margin-top: 10px;float: right;">-2</span>
+            <hr>
+        </div>
+        <div style="float:left;width:90%;margin-left: 5%;height: 60px;">
+            <span class="icon-plane" style="font-size: 30px;float:left;color: #15a9e9;    width: 50px;"></span>
+            <span style="display: block;margin-top: 10px;float: left;">旅行</span>
+            <span style="display: block;margin-top: 10px;float: right;">-2</span>
+            <hr>
+        </div>
+        <div style="float:left;width:90%;margin-left: 5%;height: 60px;">
+            <span class="icon-gift" style="font-size: 30px;float:left;color: #15a9e9;    width: 50px;"></span>
+            <span style="display: block;margin-top: 10px;float: left;">买礼物</span>
+            <span style="display: block;margin-top: 10px;float: right;">-2</span>
+            <hr>
+        </div>
+        <div style="float:left;width:90%;margin-left: 5%;height: 60px;">
+            <span class="icon-camera" style="font-size: 30px;float:left;color: #15a9e9;    width: 50px;"></span>
+            <span style="display: block;margin-top: 10px;float: left;">拍艺术照</span>
+            <span style="display: block;margin-top: 10px;float: right;">-2</span>
+            <hr>
+        </div>
+    </div>
+</div>
+<a href="accountSave" style="text-decoration: none;width:100%;text-align:center;    display: block;">
+    <div class="icon-plus" style="clear: both;text-align: center;font-size: 40px;color: #15a9e9;"></div>
+</a>
 </body>
+<!--<script src="/static/weui/dist/example/zepto.min.js"></script>-->
+<!--<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+<!--<script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>-->
+<!--<script src="/static/weui/dist/example/example.js"></script>-->
 </html>
